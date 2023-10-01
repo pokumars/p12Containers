@@ -1,0 +1,32 @@
+fs-open-p12-improvements
+Full stack open part 12 comments
+-- Create a file index.js to your current directory and write console.log('Hello, World') inside it. No need for containers yet.
+
+because the names of docker containers are randomly generated, write it down soemwhee which container name of the course corresponds to which container name on your machine. This will make things less confusing as the course moves along so that you can follw the course material.
+
+-------------------------COMMENT---------------------------
+marker:
+reason: 
+solution/conclusion
+
+-------------------------COMMENT---------------------------
+marker:
+reason: 
+solution/conclusion
+
+-------------------------COMMENT---------------------------
+marker: 12 part 1  Next, let's skip installing Node altogether. 
+reason: again where are we ?
+solution/conclusion
+
+-------------------------COMMENT---------------------------
+marker: 12 part 1 Create a file index.js to your current directory and write console.log('Hello, World') inside it. No need for containers yet.
+reason: What does this mean "to your current directory". Where are we? on the windows side or the WSL side? is the current directory supposed to be the same as the submission folder or are we talking about something else?
+solution/conclusion
+
+-------------------------COMMENT---------------------------
+marker:
+reason: 
+solution/conclusion
+
+because the names of docker containers are randomly generated, write it down soemwhee which container name of the course corresponds to which container name on your machine. This will make things less confusing as the course moves along so that you can follw the course material.

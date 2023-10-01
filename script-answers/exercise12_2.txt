@@ -1,0 +1,11 @@
+
+Script started on 2023-10-01 13:48:19+00:00 [TERM="xterm" TTY="/dev/pts/0" COLUMNS="150" LINES="50"]
+# pwd
+/
+# ls
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  typescript  usr  var
+# cd usr/src/app
+sh: 3: cd: can't cd to usr/src/app
+# mkdir usr/src/app
+# touch index.js
+# exit
