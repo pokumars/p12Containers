@@ -24,9 +24,13 @@ marker: 12 part 1 Create a file index.js to your current directory and write con
 reason: What does this mean "to your current directory". Where are we? on the windows side or the WSL side? is the current directory supposed to be the same as the submission folder or are we talking about something else?
 solution/conclusion
 
+It later becomes clear that this was index.js on the windows side
+
 -------------------------COMMENT---------------------------
 marker:
 reason: 
 solution/conclusion
 
 because the names of docker containers are randomly generated, write it down soemwhee which container name of the course corresponds to which container name on your machine. This will make things less confusing as the course moves along so that you can follw the course material.
+
+
