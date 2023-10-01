@@ -15,6 +15,17 @@ reason:
 solution/conclusion
 
 -------------------------COMMENT---------------------------
+marker: docker build -t fs-hello-world . 
+reason: 
+solution/conclusion:
+at this part for windows/WSL users, there hsould be some instruction that says 
+- enter WSL
+- navigate to the windows directory where you are having your submission files
+  i.e cd /mnt/c/Users/username/.../part12-containers-applications/partBDir/ 
+  which contains your index.js and your Dockerfile
+- 
+
+-------------------------COMMENT---------------------------
 marker: 12 part 1  Next, let's skip installing Node altogether. 
 reason: again where are we ?
 solution/conclusion
