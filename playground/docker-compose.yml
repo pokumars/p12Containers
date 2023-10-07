@@ -1,0 +1,8 @@
+version: '3.8'            # This line specifies the version of the Docker Compose file format being used. In this case, it's using version 3.8, which corresponds to the schema and features supported in that version of Docker Compose.
+
+services:                 # This section is where you define the services that make up your application.
+  app:                    # This is the name of the service, which can be any name you choose. In this case, it's named "app."
+    image: express-server # This line specifies the Docker image to use for this service. It references an image called "express-server." This image likely contains the code and dependencies required to run an Express.js server. If this image doesn't exist locally, Docker Compose will try to pull it from a container registry like Docker Hub.
+    build: .              # This line specifies that the Docker image for the "app" service should be built from the Dockerfile located in the current directory (.). This means that the application's source code and dependencies should be included in the image, and the image will be built based on the instructions in the Dockerfile.
+    ports:                # This line defines port mapping. It instructs Docker to map port 3000 inside the container to port 3000 on the host machine. This means that any traffic sent to port 3000 on the host machine will be forwarded to the "app" service running inside the Docker container on the same port. This is typically used for exposing services to the host machine or external network.
+      - 3000:3000
