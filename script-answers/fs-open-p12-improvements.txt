@@ -2,7 +2,7 @@ fs-open-p12-improvements
 Full stack open part 12 comments
 -- Create a file index.js to your current directory and write console.log('Hello, World') inside it. No need for containers yet.
 
-because the names of docker containers are randomly generated, write it down soemwhee which container name of the course corresponds to which container name on your machine. This will make things less confusing as the course moves along so that you can follw the course material.
+because the names of docker containers are randomly generated, write it down somewhere which container name of the course corresponds to which container name on your machine. This will make things less confusing as the course moves along so that you can follw the course material.
 
 -------------------------COMMENT---------------------------
 marker:
@@ -10,9 +10,17 @@ reason:
 solution/conclusion
 
 -------------------------COMMENT---------------------------
-marker:
-reason: 
-solution/conclusion
+marker: Exercise 12.8 when you have to run mongosh and it says mongosh not found
+reason:  
+solution/conclusion:
+winpty docker exec -it container_name bash
+I am on bash for windows hence the need to use winpty.
+
+I tried `winpty docker exec -it container_name mongosh` and that didnt work either.
+Whilst googling it said I had to download the mongo shell but that didnt really make sense because the image is an official mongodb image so why would it not come with the mongo shell.
+A solution is to change directory into docker-entrypoint-initdb.d/ where there is mongo-init.js the mongo initialising files.
+from there run `mongosh -u your_username -p your_password` and the mongo cli should be available.
+
 
 -------------------------COMMENT---------------------------
 marker: docker build -t fs-hello-world . 
