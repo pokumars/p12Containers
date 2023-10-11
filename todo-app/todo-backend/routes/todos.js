@@ -1,10 +1,12 @@
 const express = require('express');
-const { Todo } = require('../mongo')
+const { Todo } = require('../mongo');
+const { getNumberOfTodos, ADDED_TODOS, setAsync } = require('../redis');
 const router = express.Router();
 
 /* GET todos listing. */
 router.get('/', async (_, res) => {
   const todos = await Todo.find({})
+  console.log('find all is running')
   res.send(todos);
 });
 
@@ -14,6 +16,10 @@ router.post('/', async (req, res) => {
     text: req.body.text,
     done: false
   })
+
+  const todosCount = await getNumberOfTodos()
+  await setAsync(ADDED_TODOS, todosCount + 1)
+
   res.send(todo);
 });
 
@@ -30,7 +36,10 @@ const findByIdMiddleware = async (req, res, next) => {
 
 /* DELETE todo. */
 singleRouter.delete('/', async (req, res) => {
-  await req.todo.delete()  
+  await req.todo.delete()
+
+  const todosCount = await getNumberOfTodos();
+  await setAsync(ADDED_TODOS, todosCount - 1);
   res.sendStatus(200);
 });
 
