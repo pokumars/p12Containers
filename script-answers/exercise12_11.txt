@@ -1,0 +1,40 @@
+exercise12_1.txt
+
+ohene@DESKTOP-IPS1RJT MINGW64 ~/Education/WebDev/p12ContainersFsOpen2023/part12-containers-applications/todo-app/todo-backend (main)
+$ docker exec todo-backend-redis-1
+"docker exec" requires at least 2 arguments.
+See 'docker exec --help'.
+
+Usage:  docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
+
+Execute a command in a running container
+
+ohene@DESKTOP-IPS1RJT MINGW64 ~/Education/WebDev/p12ContainersFsOpen2023/part12-containers-applications/todo-app/todo-backend (main)
+$ docker exec -it todo-backend-redis-1 redis-cli
+the input device is not a TTY.  If you are using mintty, try prefixing the command with 'winpty'
+
+ohene@DESKTOP-IPS1RJT MINGW64 ~/Education/WebDev/p12ContainersFsOpen2023/part12-containers-applications/todo-app/todo-backend (main)
+$ winpty docker exec -it todo-backend-redis-1 redis-cli
+127.0.0.1:6379> KEYS
+(error) ERR wrong number of arguments for 'keys' command
+127.0.0.1:6379> KEYS *a*
+(empty array)
+127.0.0.1:6379> script
+(error) ERR wrong number of arguments for 'script' command
+127.0.0.1:6379> KEYS *
+1) "ADDED_TODOS"
+127.0.0.1:6379> GET ADDED_TODOS
+"1"
+127.0.0.1:6379> SET ADDED_TODOS 9001
+OK
+127.0.0.1:6379> GET ADDED_TODOS
+"9001"
+127.0.0.1:6379> GET ADDED_TODOS
+"9002"
+127.0.0.1:6379> DEL ADDED_TODOS
+(integer) 1
+127.0.0.1:6379> GET ADDED_TODOS
+(nil)
+127.0.0.1:6379> GET ADDED_TODOS
+"1"
+127.0.0.1:6379> exit
