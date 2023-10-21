@@ -17,3 +17,9 @@ The application has /todos crud which requires a MongoDB. Pass connection url wi
 # Redis
 
 Pass connection url with env `REDIS_URL`
+
+startup Redis and MongDB
+docker compose -f docker-compose.dev.yml up
+
+start the backend
+REDIS_URL=redis://localhost:3457 MONGO_URL=mongodb://the_username:the_password@localhost:3456/the_database PORT=3458 npm run dev
