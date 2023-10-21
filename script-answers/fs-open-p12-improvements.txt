@@ -53,3 +53,4 @@ solution/conclusion
 because the names of docker containers are randomly generated, write it down soemwhee which container name of the course corresponds to which container name on your machine. This will make things less confusing as the course moves along so that you can follw the course material.
 
 
+-------------------------COMMENT---------------------------
