@@ -1,4 +1,6 @@
-#This is to test that when I run script command, it really saves all the output
+This is to test that when I run script command, it really saves all the output
+#docker build -t frontend-test-copy .
+
 FROM node:16 as test-stage
 WORKDIR /usr/src/app
 
@@ -7,7 +9,10 @@ COPY . .
 RUN npm ci
 
 RUN script -c "CI=true npm test" testResults.txt 
-#CMD npm run start
+#docker exec -it 2ab97b4892be5191edd39b395e58410e1fe01ac9e6ba9024d7079fac518e2c66 sh
+
+
+
 
 FROM node:16 as build-stage
 ENV REACT_APP_BACKEND_URL=http://localhost:3458
@@ -18,7 +23,6 @@ COPY . .
 RUN npm ci
 
 RUN npm run build
-COPY --from=test-stage /usr/src/app/testResults.txt /usr/src/app/build
 
 # This is a new stage, everything before this is gone, except the files we want to COPY
 FROM nginx:1.20-alpine
