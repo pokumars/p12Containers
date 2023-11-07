@@ -54,3 +54,38 @@ because the names of docker containers are randomly generated, write it down soe
 
 
 -------------------------COMMENT---------------------------
+marker: instructions after 12.14
+reason: we are putting hello front in the dev.Dockerfile but the instructions make it seem that that we are putting the todo frontend in the dev.dockerfile.
+How do I know it meant the hello-front instead of the todo frontend? well 
+- it names the image as hello-front-dev
+- The env variable required in the frontend of the todo is not in the dockerfile  
+solution/conclusion
+
+-------------------------COMMENT---------------------------
+marker:
+reason: 
+solution/conclusion
+
+-------------------------COMMENT---------------------------
+marker:
+reason: 
+solution/conclusion
+
+-------------------------COMMENT---------------------------
+marker:
+reason: 
+solution/conclusion
+
+
+-----
+a personal note -
+Docker mounted volume adds ;C to end of windows path when translating from linux style path. 
+so replace the pwd with /${PWD} or /$(pwd)
+https://stackoverflow.com/questions/50608301/docker-mounted-volume-adds-c-to-end-of-windows-path-when-translating-from-linux
+
+------
+
+# docker build -f ./dev.Dockerfile -t hello-front-dev .
+
+#on windows using git bash, this is the command to develop react with hot reloading.
+#docker run --name hello-front-dev-cont -p 3000:3000 --rm -v /${PWD}:/usr/src/app/ -e WATCHPACK_POLLING=true hello-front-dev
