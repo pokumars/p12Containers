@@ -89,3 +89,7 @@ https://stackoverflow.com/questions/50608301/docker-mounted-volume-adds-c-to-end
 
 #on windows using git bash, this is the command to develop react with hot reloading.
 #docker run --name hello-front-dev-cont -p 3000:3000 --rm -v /${PWD}:/usr/src/app/ -e WATCHPACK_POLLING=true hello-front-dev
+---------
+
+for exercise 12.16 you may have to modify your npm run watch to include --legacy watch. Otherwise nodemon doesnt hot reload in the container when you make changes on the express files in the volume.
+if you `docker exec -it` into the container and `cat filename` you can see that the change is refelected but it just doenst hot reload

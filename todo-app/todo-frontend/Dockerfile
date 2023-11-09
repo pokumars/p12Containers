@@ -30,3 +30,5 @@ COPY --from=build-stage /usr/src/app/build /usr/share/nginx/html
 
 #docker build . -t todo-frontend
 # docker run -p 8000:80 todo-frontend
+
+#REACT_APP_BACKEND_URL=http://localhost:3458 npm run start
