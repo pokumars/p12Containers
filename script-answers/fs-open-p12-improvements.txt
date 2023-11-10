@@ -5,9 +5,27 @@ Full stack open part 12 comments
 because the names of docker containers are randomly generated, write it down somewhere which container name of the course corresponds to which container name on your machine. This will make things less confusing as the course moves along so that you can follw the course material.
 
 -------------------------COMMENT---------------------------
-marker:
-reason: 
+marker: part C Communications between containers in a more ambitious environment
+reason: unclear communication
 solution/conclusion
+
+`Let us now put the hello-frontend behind the reverse proxy.
+
+Create a file nginx.conf in the project root and take the following template as a starting point.`
+I assume by project root, it means in 'todo-app' i.e the parent of todo-backend and todo-frontend. This could be communicated more clearly because both frontend and backedn are so called projects that we have been workinng on separately so project root could also mean the frontend because it has just been mentioned.
+
+I found out later that what was meant wasnt even what I thought by reading further to search for clues where was meant.  He meant the hello-front. I shouldnt have to go clue-hunting for this. I think since this part 12 has so many sub projects, it makes sense to be a bit clearer.
+
+-------------------------COMMENT---------------------------
+marker: part C Communications between containers in a more ambitious environment
+reason: unclear communication
+solution/conclusion
+
+`Next, create an Nginx service in the docker-compose.yml file. Add a volume as instructed in the Docker Hub page where the right side is :/etc/nginx/nginx.conf:ro, the final ro declares that the volume will be read-only:`
+
+I assume by project root, it means in 'todo-app' i.e the parent of todo-backend and todo-frontend. This could be communicated more clearly because both frontend and backedn are so called projects that we have been workinng on separately so project root could also mean the frontend because it has just been mentioned.
+
+I found out later that what was meant wasnt even what I thought by reading further to search for clues where was meant.  He meant the hello-front. I shouldnt have to go clue-hunting for this. I think since this part 12 has so many sub projects, it makes sense to be a bit clearer.
 
 -------------------------COMMENT---------------------------
 marker: Exercise 12.8 when you have to run mongosh and it says mongosh not found

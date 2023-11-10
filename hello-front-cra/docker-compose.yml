@@ -7,13 +7,24 @@ services:
     volumes:
       - ./:/usr/src/app # The path can be relative, so ./ is enough to say "the same location as the docker-compose.yml"
     ports:
-      - 3000:3000
+      - 3210:3000
     container_name: hello-front-dev-cont # This will name the container hello-front-dev-cont
     environment:
       - WATCHPACK_POLLING=true
   debug-helper: #This is just our own name that we are giving this. like app above
     image: busybox # The Busybox container won't have any process running inside so we can not exec in there. With Docker Compose we can use docker compose run SERVICE COMMAND to run a service with a specific command https://fullstackopen.com/en/part12/basics_of_orchestration#communication-between-containers-in-a-docker-network
-      
+  nginx:
+    image: nginx:1.20.1
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    container_name: reverse-proxy
+    depends_on:
+      - app # wait for the frontend container to be started
+
+
+
 #on windows using git bash, this is the command to develop react with hot reloading.
 #docker run --name hello-front-dev-cont -p 3000:3000 --rm -v /${PWD}:/usr/src/app/ -e WATCHPACK_POLLING=true hello-front-dev
 #Polling uses a lot of CPU. you can look up how to possibly optimise this by putting a flag in your webpack config
