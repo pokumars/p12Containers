@@ -1,0 +1,23 @@
+# This is the version of stuff that uses the reverse proxy method
+services: 
+  todo-frontend-app:
+    image: todo-front-dev
+    build: 
+      context: ./todo-frontend # The context will pick this directory as the "build context"
+      dockerfile: dev.Dockerfile # This will simply tell which dockerfile to read
+    volumes:
+      - ./todo-frontend:/usr/src/app
+    ports:
+      - 3000:3000
+    container_name: todo-front-app-dev-cont # This will name the container todo-front-dev-cont
+    environment:
+      - WATCHPACK_POLLING=true
+  nginx:
+    image: nginx:1.20.1
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    container_name: todo-app-reverse-proxy
+    depends_on:
+      - todo-frontend-app # wait for the frontend container to be started
