@@ -11,6 +11,9 @@ RUN script -c "CI=true npm test" testResults.txt
 
 FROM node:16 as build-stage
 ENV REACT_APP_BACKEND_URL=http://localhost:3458
+#ENV REACT_APP_BACKEND_URL=http://todo-back-app-dev-cont:3000
+#ENV REACT_APP_BACKEND_URL=http://localhost:3458
+#ENV REACT_APP_BACKEND_URL=http://localhost:8080/api/
 WORKDIR /usr/src/app
 
 COPY . .

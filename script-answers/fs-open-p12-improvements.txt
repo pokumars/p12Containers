@@ -111,3 +111,28 @@ https://stackoverflow.com/questions/50608301/docker-mounted-volume-adds-c-to-end
 
 for exercise 12.16 you may have to modify your npm run watch to include --legacy watch. Otherwise nodemon doesnt hot reload in the container when you make changes on the express files in the volume.
 if you `docker exec -it` into the container and `cat filename` you can see that the change is refelected but it just doenst hot reload
+
+
+
+
+Notes how to debug with Busybox
+Busybox can help us to debug our configurations. So if you get lost, you should use Busybox to find out what works and what doesn't. Let's use it to explore what was just said. That containers are inside a network and you can easily connect between them. Busybox can be added to the mix by changing docker-compose.yml to:
+
+services:
+  app:
+    image: hello-front-dev
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 3000:3000
+    container_name: hello-front-dev
+  debug-helper:
+    image: busybox
+
+
+Busybox wont have any process running in it so we cannot exec in there.
+While the docker-compose containers are running, we can do a request with wget since it's a tool included in Busybox to send a request from the debug-helper to the container to be debugged.
+With Docker Compose we can use docker compose run SERVICE COMMAND to run a service with a specific command. Command wget requires the flag -O with - to output the response to the stdout:
