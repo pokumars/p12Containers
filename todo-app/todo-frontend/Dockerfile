@@ -10,7 +10,7 @@ RUN script -c "CI=true npm test" testResults.txt
 #CMD npm run start
 
 FROM node:16 as build-stage
-ENV REACT_APP_BACKEND_URL=http://localhost:3458
+ENV REACT_APP_BACKEND_URL=http://localhost:8080/api/
 #ENV REACT_APP_BACKEND_URL=http://todo-back-app-dev-cont:3000
 #ENV REACT_APP_BACKEND_URL=http://localhost:3458
 #ENV REACT_APP_BACKEND_URL=http://localhost:8080/api/
@@ -28,7 +28,7 @@ FROM nginx:1.20-alpine
 # COPY the directory build from build-stage to /usr/share/nginx/html
 # The target location here was found from the Docker hub page
 COPY --from=build-stage /usr/src/app/build /usr/share/nginx/html
-
+ENV REACT_APP_BACKEND_URL=http://localhost:8080/api/
 
 
 #docker build . -t todo-frontend

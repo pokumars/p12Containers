@@ -4,7 +4,7 @@ const router = express.Router();
 
 const configs = require('../util/config')
 
-let visits = 10
+let visits = 0
 
 /* GET index data. */
 router.get('/', async (req, res) => {
