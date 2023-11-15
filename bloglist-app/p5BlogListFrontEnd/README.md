@@ -17,3 +17,4 @@ Add blogs and articles that you find interestng. They can be commented on and li
  State is managed inside Redux.
 
 
+docker run --name bloglist-frontend-dev-cont -p 3000:3000 --rm -v /${PWD}:/usr/src/app/ -e REACT_APP_BACKEND_URL=http://localhost:3003 bloglist-frontend-dev
