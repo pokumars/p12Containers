@@ -1,1 +1,9 @@
 node_modules
+.git
+.vscode
+.*ignore 
+.env
+docker-compose*.yml
+Dockerfile*
+Makefile
+*.md

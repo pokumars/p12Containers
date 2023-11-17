@@ -49,7 +49,7 @@ services:
       - MONGO_URL=mongodb://the_username:the_password@mongo:27017/the_database
   debug-helper:
     image: busybox
-#in the environment variales, the port used is the port from which the application is available in that container, also specified in the docker-compose.yml. It uses the name of the service specified in the docker-compose.yml.
+#in the environment variables, the port used is the port from which the application is available in that container, also specified in the docker-compose.yml. It uses the name of the service specified in the docker-compose.yml.
 
 
 # winpty docker exec -it todo-app-backend-dev-cont sh

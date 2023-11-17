@@ -136,3 +136,19 @@ services:
 Busybox wont have any process running in it so we cannot exec in there.
 While the docker-compose containers are running, we can do a request with wget since it's a tool included in Busybox to send a request from the debug-helper to the container to be debugged.
 With Docker Compose we can use docker compose run SERVICE COMMAND to run a service with a specific command. Command wget requires the flag -O with - to output the response to the stdout:
+
+
+-------
+
+https://stackoverflow.com/questions/53945934/docker-compose-and-dockerignore
+I struggled with this until I came across this article which helped me understand what was happening in my case. If you are binding everything to the container
+e.g .:/app or .:/usr/src/app as it is common during development for hot reloading, we are completely ignoring .dockerignore since the bind mounts are attached
+after the image is built, even files that were ignored are now mounted to the container. I removed the binding and files specified in .dockerignore were ignored.
+
+I still bind everything during development but when building production images, I do not
+
+so the problem with bcrypt not working in my docker-compose.dev.yml based containers is that I copy node_modules from my windows to a linux container.
+I put node_modules in my .dockerignore but then because it is a dev environment I also want hot-reloading and create a volume. what that does is that the very files i dockerignored are mnow copied into the container. The bcrypt version the container gets is I suupose OS-specific and that one was for windows. So I need to rebuild it for that invironemnt it is in now.
+
+one solution would be to have the rebuild command in the dockerfile `npm rebuild bcrypt --build-from-source`.
+Another one is to not have everything in the volume somehow

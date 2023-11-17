@@ -1,2 +1,11 @@
 .env
+.git
+.vscode
+.*ignore
+.env
+docker-compose*.yml
+Dockerfile*
+Makefile
+*.md
 node_modules
+npm-debug.log

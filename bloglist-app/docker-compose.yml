@@ -1,0 +1,44 @@
+services:
+  bloglist-frontend:
+    image: bloglist-frontend-prod
+    build: 
+      context: ./p5BlogListFrontEnd # The context will pick this directory as the "build context"
+      dockerfile: Dockerfile # This will simply tell which dockerfile to read
+    container_name: bloglist-frontend-prod-cont # This will name the container bloglist-frontend-prod-cont
+    environment:
+      - REACT_APP_BACKEND_URL=http://localhost:8080/api/
+  nginx:
+    image: nginx:1.20.1
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    container_name: bloglist-app-reverse-proxy
+    depends_on:
+      - bloglist-frontend # wait for the frontend container to be started
+      - bloglist-backend
+  bloglist-backend:
+    image: bloglist-backend-prod
+    build:
+      context: ./p4BlogList # The context will pick this directory as the "build context"
+      dockerfile: Dockerfile # This will simply tell which dockerfile to read
+    container_name: bloglist-backend-prod-cont #This will name the container bloglist-backend-prod-cont
+    env_file:
+      -  ./p4BlogList/.env
+  debug-helper:
+    image: busybox
+#wget -O - http://bloglist-backend:3003/api/users
+#wget -O - http://bloglist-frontend:80
+
+
+#in the environment variables, the port used is the port from which the application is available in that container, also specified in the docker-compose.yml. It uses the name of the service specified in the docker-compose.yml.
+
+
+# winpty docker exec -it bloglist-backend-prod-cont sh
+# docker compose -f docker-compose.yml down --volumes
+# docker compose -f docker-compose.yml up #to initialize
+
+# --volumes -> Remove named volumes declared in the "volumes" section of the Compose file and anonymous volumes attached to containers.
+
+
+# in a docker compose, when a group of docker containers are started, there is an internal docker network. You don't need to use localost to access the containers in the docker network. you can just refer to them by their service nae as we have done here.
