@@ -1,0 +1,52 @@
+services:
+  bloglist-frontend:
+    image: bloglist-frontend-dev
+    build: 
+      context: ./p5BlogListFrontEnd # The context will pick this directory as the "build context"
+      dockerfile: dev.Dockerfile # This will simply tell which dockerfile to read
+    volumes:
+      - ./p5BlogListFrontEnd:/usr/src/app
+    container_name: bloglist-frontend-dev-cont # This will name the container bloglist-frontend-dev-cont
+    environment:
+      - WATCHPACK_POLLING=true
+      - REACT_APP_BACKEND_URL=http://localhost:8080/api/
+  nginx:
+    image: nginx:1.20.1
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    container_name: bloglist-app-reverse-proxy
+    depends_on:
+      - bloglist-frontend # wait for the frontend container to be started
+      - bloglist-backend
+  bloglist-backend:
+    image: bloglist-backend-dev
+    build:
+      context: ./p4BlogList # The context will pick this directory as the "build context"
+      dockerfile: dev.Dockerfile # This will simply tell which dockerfile to read
+    volumes:
+      - ./p4BlogList:/usr/src/app # The path can be relative, so ./ is enough to say "the same location as the docker-compose.yml"
+      - /usr/src/app/node_modules/node_modules/bcrypt/
+    ports:
+    - 3003:3003
+    container_name: bloglist-backend-dev-cont #This will name the container bloglist-backend-dev-cont
+    env_file:
+      -  ./p4BlogList/.env
+  debug-helper:
+    image: busybox
+#wget -O - http://bloglist-backend:3003/api/users
+#wget -O - http://bloglist-frontend:3000
+
+
+#in the environment variables, the port used is the port from which the application is available in that container, also specified in the docker-compose.yml. It uses the name of the service specified in the docker-compose.yml.
+
+
+# winpty docker exec -it bloglist-backend-dev-cont sh
+# docker compose -f docker-compose.dev.yml down --volumes
+# docker compose -f docker-compose.dev.yml up #to initialize
+
+# --volumes -> Remove named volumes declared in the "volumes" section of the Compose file and anonymous volumes attached to containers.
+
+
+# in a docker compose, when a group of docker containers are started, there is an internal docker network. You don't need to use localost to access the containers in the docker network. you can just refer to them by their service nae as we have done here.
